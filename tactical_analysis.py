@@ -3,7 +3,9 @@ import numpy as np
 
 # 1. Load and Filter
 df = pd.read_csv('data/players_data-2025_2026.csv')
-df = df[df['90s'] >= 5].copy() 
+
+# CHANGE: Increased from 5 to 10 full games
+df = df[df['90s'] >= 10].copy()
 
 # 2. Expanded Metrics for Deeper Realism
 positive_metrics = ['Gls', 'Ast', 'KP', 'PrgP', 'SoT', 'Int', 'TklW', 'Blocks', 'Clr', 'Saves', 'CS']
