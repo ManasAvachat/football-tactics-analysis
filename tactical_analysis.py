@@ -49,7 +49,7 @@ def calculate_net_impact(row):
                     (get_val(row, 'Ast') * 1.0) + (get_val(row, 'TklW') * 0.5)
     elif 'DF' in pos:
         positives = (get_val(row, 'Int') * 1.5) + (get_val(row, 'TklW') * 1.5) + \
-                    (get_val(row, 'Blocks') * 1.0) + (get_val(row, 'Clr') * 1.0)
+                    (get_val(row, 'PrgP') * 1.0) + (get_val(row, 'Blocks') * 0.5) + (get_val(row, 'Clr') * 0.2)
     elif 'GK' in pos:
         positives = (get_val(row, 'Saves') * 2.0) + (get_val(row, 'CS') * 1.5)
     else:
