@@ -60,10 +60,8 @@ df['Net_Impact_Score'] = df.apply(calculate_net_impact, axis=1)
 # 6. Clean Output Generation
 print("\n--- Top 10 Game Changers (Re-Balanced Model) ---")
 valid_display = [c for c in ['Player', 'Pos', 'Squad', 'Net_Impact_Score'] if c in df.columns]
-# .to_string(index=False) hides the random row numbers for a cleaner look
 print(df.sort_values(by='Net_Impact_Score', ascending=False)[valid_display].head(10).to_string(index=False))
 
 print("\n--- 'The Elite Ceiling' (Avg Score of Top 5 Players per Position) ---")
 elite_avg = df.groupby('Pos')['Net_Impact_Score'].nlargest(5).groupby('Pos').mean().round(2)
-# .to_string() removes the annoying "Name: Net_Impact_Score, dtype: float64" bug
 print(elite_avg.to_string())
