@@ -35,19 +35,17 @@ def get_val(row, col_name):
 def calculate_net_impact(row):
     pos = str(row['Pos'])
     
-    # Enhanced Penalties: Own goals are a disaster, Offsides kill momentum
+    # Enhanced Penalties
     mistake_penalty = (get_val(row, 'Fls') * 0.5) + (get_val(row, 'CrdY') * 1.0) + \
                       (get_val(row, 'CrdR') * 3.0) + (get_val(row, 'Off') * 0.5) + (get_val(row, 'OG') * 3.0)
     
-    # Rebalanced Positives: Midfielders and Defenders get rewarded for their specific duties
+    # Rebalanced Positives
     if 'FW' in pos:
         positives = (get_val(row, 'Gls') * 1.5) + (get_val(row, 'Ast') * 1.0) + (get_val(row, 'SoT') * 0.5)
     elif 'MF' in pos:
-        # Midfielders are the engine: High reward for moving the ball forward and creating chances
         positives = (get_val(row, 'PrgP') * 1.5) + (get_val(row, 'KP') * 1.5) + \
                     (get_val(row, 'Ast') * 1.0) + (get_val(row, 'TklW') * 0.5)
     elif 'DF' in pos:
-        # Defenders now have 4 ways to score points instead of 2
         positives = (get_val(row, 'Int') * 1.5) + (get_val(row, 'TklW') * 1.5) + \
                     (get_val(row, 'Blocks') * 1.0) + (get_val(row, 'Clr') * 1.0)
     elif 'GK' in pos:
